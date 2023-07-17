@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
@@ -16,16 +17,41 @@ class ChatScreen extends StatefulWidget{
 class ChatScreenState extends State<ChatScreen> {
 
   final List<types.Message> _messages = [];
+  bool modeDark = false;
+  dynamic savedThemeMode;
+  bool  darkMode = false;
 
   final _user = types.User(id: uuid.v4());
   final _chatGPT = types.User(id: uuid.v4());
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCurrentTheme();
+
+  }
+  Future getCurrentTheme() async {
+    savedThemeMode = await AdaptiveTheme.getThemeMode();
+    print(savedThemeMode.toString());
+    if(savedThemeMode.toString() =='AdaptiveThemeMode.dark'){
+      setState(() {
+        darkMode = true;
+      });
+    }else{
+      setState(() {
+        darkMode = false;
+      });
+    }
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Brandon Chat", style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.deepPurple,
+        title: Text("Brandon AI ", style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.blue,
         actions: [
           IconButton(onPressed: () {},
               icon: const Icon(Icons.history, color: Colors.white,))
@@ -38,12 +64,12 @@ class ChatScreenState extends State<ChatScreen> {
                 .of(context)
                 .colorScheme
                 .onBackground,
-            inputBorderRadius: BorderRadius.zero,
+            inputBorderRadius: BorderRadius.circular(10),
             inputContainerDecoration: BoxDecoration(
-              border: Border.all(color: Theme
-                  .of(context)
-                  .colorScheme
-                  .outlineVariant),
+              border: Border.all(color: Colors.grey),
+              color: Colors.blue,
+              borderRadius: BorderRadius.circular(0),
+
             )
         ),
         messages: _messages,

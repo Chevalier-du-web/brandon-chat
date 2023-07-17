@@ -34,7 +34,9 @@ dependencies:
   uuid: ^3.0.7
   share: ^2.0.4
   adaptive_theme: ^3.1.1
+  carousel_slider: ^4.2.1
   shared_preferences: ^2.0.15
+  flutter_social_button: ^1.1.4+1
   flutter_chat_ui:
   flutter_native_splash:
 
@@ -54,6 +56,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter_native_splash:
+  color: "#ffff"
   image: assets/logo.png
 
 # For information on the generic Dart part of this file, see the
@@ -74,6 +77,8 @@ flutter:
     - assets/onb2.PNG
     - assets/logo_br.png
     - assets/logo.png
+    - assets/logo2.png
+    - assets/logo3.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

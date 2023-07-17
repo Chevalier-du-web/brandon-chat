@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:share/share.dart';
 
 import 'about_us.dart';
+import 'chat_file.dart';
+import 'components/carroussel.dart';
 import 'components/list_item.dart';
 
 
@@ -48,7 +50,22 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text('  Brandon AI'),
+        title: Row(
+          children: [
+            Container(
+              width: 35,
+              height: 35,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                  image: const DecorationImage(
+                      image: AssetImage('assets/logo2.png'),fit: BoxFit.cover
+                  )
+              ),
+            ),
+            Text('  Brandon AI'),
+          ],
+        ),
         actions: [
           IconButton(onPressed: (){
             setState(() {
@@ -129,10 +146,38 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: Column(
-        children: const [
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Carroussel slider ...
+            const SizedBox(height: 30,),
 
-        ],
+            const CarrouselSlider(),
+            const SizedBox(height: 30,),
+            Container(
+              width: 300,
+              height: 200,
+              decoration:const BoxDecoration(
+                color: Colors.transparent,
+                image: DecorationImage(
+                  image: AssetImage('assets/logo3.png')
+                )
+              )
+            ),
+            InkWell(
+              onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatScreen())),
+              child: Container(
+                margin: const EdgeInsets.only(top: 40),
+                padding: const EdgeInsets.only(left: 120,right: 120,top: 20,bottom: 20),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(20)
+                ),
+                child: const Text('Start Chat',style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.white),),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

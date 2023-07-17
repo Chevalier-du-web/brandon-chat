@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ChatGPT free',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: ChatScreen(),
@@ -45,7 +45,12 @@ class ChatScreenState extends State<ChatScreen>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("TchatGPT"),
+        title: Text("Brandon Chat",style:TextStyle(color: Colors.white)),
+        backgroundColor: Colors.deepPurple,
+        actions: [
+         IconButton(onPressed: (){}, icon: const Icon(Icons.history,color: Colors.white,))
+
+        ],
       ),
       body: Chat(
         theme: DefaultChatTheme(
